@@ -1,3 +1,262 @@
 <resources>
     <string name="app_name">weatherapp</string>
+    <string name="maps_fragment_label">mapsfragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string-array name="popular_cities">
+        <item>Kabul</item>
+        <item>Tirana</item>
+        <item>Algiers</item>
+        <item>Pago Pago</item>
+        <item>Andorra la Vella</item>
+        <item>Luanda</item>
+        <item>The Valley</item>
+        <item>St. Johns</item>
+        <item>Buenos Aires</item>
+        <item>Yerevan</item>
+        <item>Oranjestad</item>
+        <item>Canberra</item>
+        <item>Vienna</item>
+        <item>Baku</item>
+        <item>Nassau</item>
+        <item>Manama</item>
+        <item>Dhaka</item>
+        <item>Bridgetown</item>
+        <item>Minsk</item>
+        <item>Bruxelles-Brussel</item>
+        <item>Belmopan</item>
+        <item>Cotonou</item>
+        <item>Porto-Novo</item>
+        <item>Hamilton</item>
+        <item>Thimphu</item>
+        <item>La Paz</item>
+        <item>Sucre</item>
+        <item>Sarajevo</item>
+        <item>Gaborone</item>
+        <item>Brasília</item>
+        <item>Road Town</item>
+        <item>Bandar Seri Begawan</item>
+        <item>Sofia</item>
+        <item>Ouagadougou</item>
+        <item>Bujumbura</item>
+        <item>Praia</item>
+        <item>Phnom Penh</item>
+        <item>Yaoundé</item>
+        <item>Ottawa-Gatineau</item>
+        <item>Kralendijk</item>
+        <item>George Town</item>
+        <item>Bangui</item>
+        <item>NDjaména</item>
+        <item>St. Helier</item>
+        <item>St. Peter Port</item>
+        <item>Santiago</item>
+        <item>Beijing</item>
+        <item>Hong Kong</item>
+        <item>Macao</item>
+        <item>Taibei</item>
+        <item>Bogotá</item>
+        <item>Moroni</item>
+        <item>Brazzaville</item>
+        <item>Rarotonga</item>
+        <item>San José</item>
+        <item>Abidjan</item>
+        <item>Yamoussoukro</item>
+        <item>Zagreb</item>
+        <item>Havana</item>
+        <item>Willemstad</item>
+        <item>Nicosia</item>
+        <item>Prague</item>
+        <item>Pyongyang</item>
+        <item>Kinshasa</item>
+        <item>Copenhagen</item>
+        <item>Djibouti</item>
+        <item>Roseau</item>
+        <item>Santo Domingo</item>
+        <item>Quito</item>
+        <item>Cairo</item>
+        <item>San Salvador</item>
+        <item>Malabo</item>
+        <item>Asmara</item>
+        <item>Tallinn</item>
+        <item>Addis Ababa</item>
+        <item>Tórshavn</item>
+        <item>Stanley</item>
+        <item>Suva</item>
+        <item>Helsinki</item>
+        <item>Paris</item>
+        <item>Cayenne</item>
+        <item>Papeete</item>
+        <item>Libreville</item>
+        <item>Banjul</item>
+        <item>Tbilisi</item>
+        <item>Berlin</item>
+        <item>Accra</item>
+        <item>Gibraltar</item>
+        <item>Athens</item>
+        <item>Godthåb</item>
+        <item>St.Georges</item>
+        <item>Basse-Terre</item>
+        <item>Hagåtña</item>
+        <item>Guatemala City</item>
+        <item>Conakry</item>
+        <item>Bissau</item>
+        <item>Georgetown</item>
+        <item>Port-au-Prince</item>
+        <item>Vatican City</item>
+        <item>Tegucigalpa</item>
+        <item>Budapest</item>
+        <item>Reykjavík</item>
+        <item>Delhi</item>
+        <item>Jakarta</item>
+        <item>Tehran</item>
+        <item>Baghdad</item>
+        <item>Dublin</item>
+        <item>Douglas</item>
+        <item>Jerusalem</item>
+        <item>Rome</item>
+        <item>Kingston</item>
+        <item>Tokyo</item>
+        <item>Amman</item>
+        <item>Astana</item>
+        <item>Nairobi</item>
+        <item>Tarawa</item>
+        <item>Kuwait City</item>
+        <item>Bishkek</item>
+        <item>Vientiane</item>
+        <item>Riga</item>
+        <item>Beirut</item>
+        <item>Maseru</item>
+        <item>Monrovia</item>
+        <item>Tripoli</item>
+        <item>Vaduz</item>
+        <item>Vilnius</item>
+        <item>Luxembourg</item>
+        <item>Antananarivo</item>
+        <item>Lilongwe</item>
+        <item>Kuala Lumpur</item>
+        <item>Male</item>
+        <item>Bamako</item>
+        <item>Valletta</item>
+        <item>Majuro</item>
+        <item>Fort-de-France</item>
+        <item>Nouakchott</item>
+        <item>Port Louis</item>
+        <item>Mamoudzou</item>
+        <item>Mexico City</item>
+        <item>Palikir</item>
+        <item>Monaco</item>
+        <item>Ulaanbaatar</item>
+        <item>Podgorica</item>
+        <item>Brades Estate</item>
+        <item>Rabat</item>
+        <item>Maputo</item>
+        <item>Nay Pyi Taw</item>
+        <item>Windhoek</item>
+        <item>Nauru</item>
+        <item>Kathmandu</item>
+        <item>Amsterdam</item>
+        <item>The Hague</item>
+        <item>Nouméa</item>
+        <item>Wellington</item>
+        <item>Managua</item>
+        <item>Niamey</item>
+        <item>Abuja</item>
+        <item>Alofi</item>
+        <item>Saipan</item>
+        <item>Oslo</item>
+        <item>Muscat</item>
+        <item>Islamabad</item>
+        <item>Koror</item>
+        <item>Panama City</item>
+        <item>Port Moresby</item>
+        <item>Asunción</item>
+        <item>Lima</item>
+        <item>Manila</item>
+        <item>Warsaw</item>
+        <item>Lisbon</item>
+        <item>San Juan</item>
+        <item>Doha</item>
+        <item>Seoul</item>
+        <item>Chişinău</item>
+        <item>Saint-Denis</item>
+        <item>Bucharest</item>
+        <item>Moscow</item>
+        <item>Kigali</item>
+        <item>Jamestown</item>
+        <item>Basseterre</item>
+        <item>Castries</item>
+        <item>Saint-Pierre</item>
+        <item>Kingstown</item>
+        <item>Apia</item>
+        <item>San Marino</item>
+        <item>São Tomé</item>
+        <item>Riyadh</item>
+        <item>Dakar</item>
+        <item>Belgrade</item>
+        <item>Victoria</item>
+        <item>Freetown</item>
+        <item>Singapore</item>
+        <item>Philipsburg</item>
+        <item>Bratislava</item>
+        <item>Ljubljana</item>
+        <item>Honiara</item>
+        <item>Mogadishu</item>
+        <item>Bloemfontein</item>
+        <item>Cape Town</item>
+        <item>Pretoria</item>
+        <item>Juba</item>
+        <item>Madrid</item>
+        <item>Colombo</item>
+        <item>Sri Jayewardenepura Kotte</item>
+        <item>Al-Quds</item>
+        <item>Al-Khartum</item>
+        <item>Paramaribo</item>
+        <item>Mbabane</item>
+        <item>Stockholm</item>
+        <item>Bern</item>
+        <item>Damascus</item>
+        <item>Dushanbe</item>
+        <item>Skopje</item>
+        <item>Krung Thep</item>
+        <item>Dili</item>
+        <item>Lomé</item>
+        <item>Tokelau</item>
+        <item>Nukualofa</item>
+        <item>Port of Spain</item>
+        <item>Tunis</item>
+        <item>Ankara</item>
+        <item>Ashgabat</item>
+        <item>Cockburn Town</item>
+        <item>Funafuti</item>
+        <item>Kampala</item>
+        <item>Kyiv</item>
+        <item>Abu Zaby</item>
+        <item>London</item>
+        <item>Dodoma</item>
+        <item>Washington</item>
+        <item>Charlotte Amalie</item>
+        <item>Montevideo</item>
+        <item>Tashkent</item>
+        <item>Port Vila</item>
+        <item>Caracas</item>
+        <item>Hà Noi</item>
+        <item>Matu-Utu</item>
+        <item>El Aaiún</item>
+        <item>Sanaa</item>
+        <item>Lusaka</item>
+        <item>Harare</item>
+    </string-array>
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Change Units of Temperature</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Change to Kelvin</string>
+
 </resources>
