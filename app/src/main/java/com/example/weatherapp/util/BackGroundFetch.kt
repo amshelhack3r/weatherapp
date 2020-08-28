@@ -1,4 +1,4 @@
-package com.example.weatherapp
+package com.example.weatherapp.util
 
 import android.os.Handler
 import android.os.Message
@@ -7,22 +7,23 @@ import com.google.gson.Gson
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
-import java.net.ContentHandler
 import java.net.HttpURLConnection
 import java.net.URL
 
-class MyThread(val handler: Handler): Thread() {
+class BackGroundFetch(private val handler: Handler, private val url:URL): Thread() {
     override fun run() {
         super.run()
+        println(url)
         getData()
+
     }
 
     val GET: String = "GET"
     @Throws(IOException::class)
-    fun getData():String?{
-        val urlObj = URL(NAIROBI_FORECAST)
+    fun getData(): Message? {
 
-        val connection = urlObj.openConnection() as HttpURLConnection
+
+        val connection = url.openConnection() as HttpURLConnection
         connection.requestMethod = GET
 
         val responseCode = connection.responseCode
@@ -34,18 +35,16 @@ class MyThread(val handler: Handler): Thread() {
             while (`in`.readLine().also { inputLine = it }!= null){
                 response.append(inputLine)
             }
-            println(response.toString())
 
             val x = Gson()
             val forecast = x.fromJson(response.toString(), Forecast::class.java) as Forecast
 
 
-            println(forecast.city)
 
             Message.obtain(handler, 1, forecast).apply {
                 sendToTarget()
             }
-            response.toString()
+
         }else{
             throw IOException("error in http callback")
         }
