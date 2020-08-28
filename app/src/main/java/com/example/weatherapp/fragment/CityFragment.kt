@@ -24,10 +24,9 @@ private const val LONGITUDE = "longitude"
 
 class CityFragment : Fragment(), View.OnClickListener {
     lateinit var forecast:Forecast
-    var progress:ProgressBar = ProgressBar(requireContext())
     //lazy initialization
     private val preferences: SharedPreferences by lazy {
-        requireActivity().getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
+        activity!!.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
     }
     private val handler = object: Handler(Looper.getMainLooper()){
         override fun handleMessage(msg: Message){
@@ -65,12 +64,12 @@ class CityFragment : Fragment(), View.OnClickListener {
                     bookmarkBtn.isEnabled = true
                 }
             }else{
-                Toast.makeText(requireContext(), "Try another name", Toast.LENGTH_LONG).apply {
+                Toast.makeText(context, "Try another name", Toast.LENGTH_LONG).apply {
                     show()
                 }
 
                 Thread.sleep(1000)
-                requireActivity().supportFragmentManager.popBackStack()
+                activity!!.supportFragmentManager.popBackStack()
             }
         }
     }
@@ -116,6 +115,11 @@ class CityFragment : Fragment(), View.OnClickListener {
         }
 
         bookmarkBtn.isEnabled = false
+        val fragment = CityListFragment()
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.content, fragment)
+//        transaction.addToBackStack(null)
+        transaction.commit()
     }
     companion object {
         /**
