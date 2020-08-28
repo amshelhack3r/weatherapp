@@ -4,35 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="20px"
     android:background="@color/bgColor"
     android:paddingLeft="30px"
     android:paddingTop="10px"
     android:paddingRight="8px"
     android:paddingBottom="10px">
 
+
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/cityName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nairobi"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="#FFFfff"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+        app:layout_constraintBottom_toBottomOf="@+id/closeBtn"
+        app:layout_constraintEnd_toStartOf="@+id/closeBtn"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+        app:layout_constraintTop_toTopOf="@+id/closeBtn" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/closeBtn"
         android:layout_width="84dp"
         android:layout_height="95dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintStart_toEndOf="@+id/cityName"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/close"
+        app:srcCompat="@drawable/ic_close_line"
         app:tint="#F10A0A" />
 </androidx.constraintlayout.widget.ConstraintLayout>

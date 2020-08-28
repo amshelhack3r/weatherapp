@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/myrecycler"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cityrecycler"
+        android:name="com.example.weatherapp.CityListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:layoutManager="LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextView"
+        tools:context=".fragment.CityListFragment"
+        tools:listitem="@layout/single_city" />
+
+    <Button
+        android:id="@+id/mapLauncher"
+        android:layout_width="260dp"
+        android:layout_height="78dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/rounded_colored"
+        android:text="ADD LOCATION"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextView"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:background="@drawable/edit_text"
+        android:drawableLeft="@drawable/ic_search_2_line"
+        android:hint="Popular Cities"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
