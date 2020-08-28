@@ -36,8 +36,8 @@ class BackGroundFetch(private val handler: Handler, private val url:URL): Thread
                 response.append(inputLine)
             }
 
-            val x = Gson()
-            val forecast = x.fromJson(response.toString(), Forecast::class.java) as Forecast
+            val gson = Gson()
+            val forecast = gson.fromJson(response.toString(), Forecast::class.java) as Forecast
 
 
 
@@ -46,7 +46,9 @@ class BackGroundFetch(private val handler: Handler, private val url:URL): Thread
             }
 
         }else{
-            throw IOException("error in http callback")
+            Message.obtain(handler, 2).apply {
+                sendToTarget()
+            }
         }
 
     }
