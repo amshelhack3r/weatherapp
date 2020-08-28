@@ -35,6 +35,9 @@ data class Forecast(
     val windDeg:String
         get()=this.wind.get("deg") ?: ""
 
+    val weatherCondition:String
+        get() = this.basic[0].get("main")?:""
+
 
 
 }
