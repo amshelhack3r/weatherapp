@@ -116,21 +116,19 @@ class CityFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         bookmarkBtn.isEnabled =false
         activity!!.findViewById<FloatingActionButton>(R.id.bookmarkBtn).setOnClickListener { view ->
             var bookmarks = preferences.getStringSet("bookmarks", mutableSetOf())
             println(forecast.city)
-            preferences.edit().apply{
+            val committed =  preferences.edit().apply{
                 bookmarks?.add(forecast.city)
+                clear()
                 putStringSet("bookmarks", bookmarks)
-                apply()
+                commit()
             }
-
+            Toast.makeText(context, "BOOKMARK ADDED", Toast.LENGTH_LONG).show()
             bookmarkBtn.isEnabled = false
 
-            Snackbar.make(view, "City bookmarked", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
         }
 
     }

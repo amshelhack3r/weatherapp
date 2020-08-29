@@ -15,6 +15,7 @@ import android.view.ViewGroup
 import android.widget.Adapter
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.view.get
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -65,6 +66,7 @@ class CityListFragment : Fragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        println(preferences.getStringSet("bookmarks", mutableSetOf()))
 
         val layoutManager = LinearLayoutManager(context)
         cityrecycler.layoutManager=layoutManager
@@ -116,9 +118,12 @@ class CityListFragment : Fragment(),
         val bookmarks = preferences.getStringSet("bookmarks", mutableSetOf())
         bookmarks?.remove(city)
         preferences.edit().apply {
+            clear()
             putStringSet("bookmarks", bookmarks)
             apply()
         }
+        Toast.makeText(context, "BOOKMARK REMOVED", Toast.LENGTH_LONG).show()
+        println(preferences.getStringSet("bookmarks", mutableSetOf()))
     }
 
 
