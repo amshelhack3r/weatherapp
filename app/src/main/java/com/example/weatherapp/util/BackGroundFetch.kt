@@ -36,12 +36,11 @@ class BackGroundFetch(private val handler: Handler, private val url:URL): Thread
                 response.append(inputLine)
             }
 
-            val gson = Gson()
-            val forecast = gson.fromJson(response.toString(), Forecast::class.java) as Forecast
 
 
 
-            Message.obtain(handler, 1, forecast).apply {
+
+            Message.obtain(handler, 1, response.toString()).apply {
                 sendToTarget()
             }
 

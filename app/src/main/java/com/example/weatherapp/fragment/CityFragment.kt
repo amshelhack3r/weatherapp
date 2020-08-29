@@ -3,20 +3,26 @@ package com.example.weatherapp.fragment
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Resources
-import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.os.Message
+import android.os.*
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weatherapp.R
+import com.example.weatherapp.adapter.CityItemRecyclerViewAdapter
+import com.example.weatherapp.adapter.FutureForecastRecyclerViewAdapter
 import com.example.weatherapp.model.Forecast
+import com.example.weatherapp.model.FutureForecast
 import com.example.weatherapp.util.*
-import kotlinx.android.synthetic.main.fragment_city.*
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
+import com.google.gson.Gson
+import kotlinx.android.synthetic.main.mockup.*
 
 private const val ARG_PARAM1 = "city"
 private const val LATITUDE = "latitude"
@@ -30,11 +36,12 @@ class CityFragment : Fragment(), View.OnClickListener {
     }
     private val handler = object: Handler(Looper.getMainLooper()){
         override fun handleMessage(msg: Message){
+            progressBar.visibility = View.INVISIBLE
 
             if(msg.what == 1) {
+                val gson = Gson()
+                forecast = gson.fromJson(msg.obj as String, Forecast::class.java) as Forecast
 
-
-                forecast = msg.obj as Forecast
                 cv_city_name.text = forecast.city
                 cv_humidity.text = "${forecast.humidity} %"
                 cv_pressure.text = "${forecast.pressure} hpa"
@@ -42,19 +49,7 @@ class CityFragment : Fragment(), View.OnClickListener {
                 cv_wind.text = "${forecast.windDeg} deg"
                 cv_wind2.text = "${forecast.windSpeed} m/s"
                 cv_weather_condition.text = forecast.weatherCondition
-                var resID: Int = when (forecast.weatherCondition) {
-                    "clear sky" -> R.drawable.ic_sun_line
-                    "few clouds" -> R.drawable.ic_cloudy_line
-                    "scattered clouds" -> R.drawable.ic_cloudy_line
-                    "broken clouds" -> R.drawable.ic_cloudy_line
-                    "shower rain" -> R.drawable.ic_showers_line
-                    "rain" -> R.drawable.ic_showers_line
-                    "thunderstorms" -> R.drawable.ic_thunderstorms_line
-                    "mist" -> R.drawable.ic_mist_line
-                    "snow" -> R.drawable.ic_snowy_line
-                    else -> R.drawable.ic_sun_line
-                }
-
+                var resID: Int = getIconId(forecast.weatherCondition)
                 cv_mainIcon.setImageResource(resID)
 
                 //check shared preferences if it contains that bookmark.
@@ -73,6 +68,30 @@ class CityFragment : Fragment(), View.OnClickListener {
             }
         }
     }
+
+    private val futureHandler =object :Handler(Looper.getMainLooper()){
+        @RequiresApi(Build.VERSION_CODES.O)
+        override fun handleMessage(msg: Message) {
+            progressBar.visibility = View.INVISIBLE
+            val gson = Gson()
+
+            val future_forecast = gson.fromJson<String>(msg.obj as String, FutureForecast::class.java) as FutureForecast
+
+            val layoutManager = LinearLayoutManager(context)
+            futureforecast.layoutManager=layoutManager
+            futureforecast.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+            futureforecast.isNestedScrollingEnabled = false
+            val values = future_forecast.getFutureForecasts()
+            futureforecast.adapter =
+                FutureForecastRecyclerViewAdapter(
+                    values
+                )
+
+
+
+
+        }
+    }
     // TODO: Rename and change types of parameters
     private var city: String? = null
     private var latitude: String? = null
@@ -86,7 +105,10 @@ class CityFragment : Fragment(), View.OnClickListener {
             longitude = it.getString(LONGITUDE)
         }
         val url = if(city!=null) buildUrlFromCity(city!!) else buildUrlFromLatLon(latitude!!, longitude!!)
+        val future_url = if(city!=null) buildFiveDayForecastUrl(city!!) else buildFiveDayUrlFromLatLon(latitude!!, longitude!!)
+
         BackGroundFetch(handler, url).start()
+        BackGroundFetch(futureHandler, future_url).start()
 
 
     }
@@ -96,25 +118,31 @@ class CityFragment : Fragment(), View.OnClickListener {
 
 
         bookmarkBtn.isEnabled =false
-        bookmarkBtn.setOnClickListener(this)
+        activity!!.findViewById<FloatingActionButton>(R.id.bookmarkBtn).setOnClickListener { view ->
+            var bookmarks = preferences.getStringSet("bookmarks", mutableSetOf())
+            println(forecast.city)
+            preferences.edit().apply{
+                bookmarks?.add(forecast.city)
+                putStringSet("bookmarks", bookmarks)
+                apply()
+            }
+
+            bookmarkBtn.isEnabled = false
+
+            Snackbar.make(view, "City bookmarked", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show()
+        }
+
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_city, container, false)
+        return inflater.inflate(R.layout.mockup, container, false)
     }
     override fun onClick(p0: View?) {
-        var bookmarks = preferences.getStringSet("bookmarks", mutableSetOf())
-        println(forecast.city)
-        preferences.edit().apply{
-            bookmarks?.add(forecast.city)
-            putStringSet("bookmarks", bookmarks)
-            apply()
-        }
 
-        bookmarkBtn.isEnabled = false
         val fragment = CityListFragment()
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
         transaction.replace(R.id.content, fragment)
